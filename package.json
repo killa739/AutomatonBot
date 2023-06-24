@@ -1,0 +1,20 @@
+{
+  "name": "debug_u_bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "init": "^0.1.2",
+    "nodemon": "^2.0.22",
+    "telegraf": "^3.40.0"
+  },
+  "type": "module"
+}
