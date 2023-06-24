@@ -17,12 +17,18 @@ getMainMenu())
 
 bot.hears('Автоматы', async ctx => {
     try{
-         const chat_id = ctx.chat.id
-        await ctx.reply (chat_id, {
+        const {id} = ctx.chat
+        const {message_id} = ctx.message
+
+        await ctx.reply (id, {
             reply_markup:{remove_keyboard: true
             }
         })
+        ctx.tg.deleteMessage(id, message_id + 1)
+
         await ctx.replyWithHTML ('У каково Вы автомата?:', automatonKeyboard()) 
+        ctx.tg.deleteMessage(id, message_id)
+
         }catch (e){
             console.error(e)
                 }
@@ -30,8 +36,10 @@ bot.hears('Автоматы', async ctx => {
 
 bot.action ('backGetMainMenu', async ctx => {
     try{
+
          await ctx.answerCbQuery()
          await ctx.replyWithHTML ('Выбери пункт меню!', getMainMenu()) 
+
         }catch (e){
             console.error(e)
 }
@@ -50,9 +58,13 @@ bot.action ('backGetMainMenu', async ctx => {
 
 bot.action ('hotelSoviet', async ctx => {
     try{
+
          await ctx.answerCbQuery()
          await ctx.replyWithHTML (`<b>Автомат Гостиница советская.</b> \n\n` +
          'Выберете, что именно случилось?', hotelSovieKeyboard()) 
+
+         ctx.tg.deleteMessage(ctx.chat.id, ctx.message.message_id)
+
         }catch (e){
             console.error(e)
 }
